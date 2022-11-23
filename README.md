@@ -20,7 +20,7 @@ module "onprem_csr1k" {
 
 - Please refer to `/examples/Deploy_New_VPC` example.
 
-```
+```hcl
 module "csr_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -50,6 +50,6 @@ module "onprem_csr1k" {
 
 # Connect to Cisco CSR Instance
 
-```
+```bash
 ssh -i OnPremCSR_KeyPair ec2-user@3.11.151.99 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
 ```
