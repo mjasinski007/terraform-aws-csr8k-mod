@@ -25,7 +25,7 @@ module "onprem_csr1k" {
 module "csr_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name                 = "csr-vpc"
+  name                 = "OnPremCSR_VPC"
   cidr                 = "10.0.0.0/16"
   azs                  = ["ap-southeast-2a"]
   private_subnets      = ["10.0.1.0/24"]
@@ -34,7 +34,7 @@ module "csr_vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = "csr-vpc"
+    Name = "OnPremCSR_VPC"
   }
 }
 
