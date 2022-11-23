@@ -1,13 +1,14 @@
 # Terraform CSR 1000v on AWS
 
-- Terraform module to deploy CSR 1000v on AWS
+- Basic Terraform module to deploy CSR 1000v on AWS
 
 ## Deploy CSR 1000v to existing VPC
 
+- Please refer to `/Examples/Deploy_CSR_In_Existing_VPC` example.
+
 ```hcl
 module "onprem_csr1k" {
-  source  = "https://github.com/mjasinski007/terraform-aws-onprem-csr.git"
-  version = "v1.0.0"
+  source  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
 
   vpc_id         = var.existing_vpc_id
   gig1_subnet_id = var.gig1_existing_subnet_id
@@ -18,7 +19,7 @@ module "onprem_csr1k" {
 
 ## Create a new VPC and Deploy CSR 1000v into it
 
-- Please refer to `/examples/Deploy_New_VPC` example.
+- Please refer to `/Examples/Deploy_CSR_In_New_VPC` example.
 
 ```hcl
 module "csr_vpc" {
@@ -38,8 +39,7 @@ module "csr_vpc" {
 }
 
 module "onprem_csr1k" {
-  source  = "https://github.com/mjasinski007/terraform-aws-onprem-csr.git"
-  version = "v1.0.0"
+  source  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
 
   vpc_id        = module.csr_vpc.vpc_id
   gi1_subnet_id = module.csr_vpc.public_subnets[0]
@@ -51,5 +51,5 @@ module "onprem_csr1k" {
 # Connect to Cisco CSR Instance
 
 ```bash
-ssh -i OnPremCSR_KeyPair ec2-user@3.11.151.99 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
 ```

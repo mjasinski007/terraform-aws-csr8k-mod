@@ -15,8 +15,7 @@ module "csr_vpc" {
 }
 
 module "onprem_csr" {
-    source  = "https://github.com/mjasinski007/terraform-aws-onprem-csr.git"
-    version = "v1.0.0"
+    source  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
 
     vpc_id         = module.csr_vpc.vpc_id
     gig1_subnet_id = module.csr_vpc.public_subnets[0]
