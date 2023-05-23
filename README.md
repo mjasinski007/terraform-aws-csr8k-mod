@@ -1,6 +1,11 @@
-# Terraform CSR 1000v on AWS
+# Objectives
 
-- Basic Terraform module to deploy single CSR 1000v on AWS
+- **Terraform Module:** Single CSR 1000v on AWS
+
+
+# Module Usage
+
+- This module creates only one CSR instance.
 
 ## Deploy CSR 1000v to existing VPC
 
@@ -48,7 +53,7 @@ module "onprem_csr1k" {
 }
 ```
 
-# Connect to Cisco CSR Instance
+## Connect to Cisco CSR Instance
 
 ```bash
 ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
