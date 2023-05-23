@@ -1,6 +1,6 @@
 # Terraform CSR 1000v on AWS
 
-- Basic Terraform module to deploy CSR 1000v on AWS
+- Basic Terraform module to deploy single CSR 1000v on AWS
 
 ## Deploy CSR 1000v to existing VPC
 
