@@ -7,7 +7,7 @@
 
 - This module creates only one CSR instance.
 
-## Deploy CSR 1000v to existing VPC
+## Deploy CSR1000v Instance In Existing VPC
 
 - Please refer to `/Examples/Deploy_CSR_In_Existing_VPC` example.
 
@@ -22,7 +22,7 @@ module "onprem_csr1k" {
 }
 ```
 
-## Create a new VPC and Deploy CSR 1000v into it
+## Deploy CSR1000v Instance And New VPC
 
 - Please refer to `/Examples/Deploy_CSR_In_New_VPC` example.
 
@@ -53,7 +53,7 @@ module "onprem_csr1k" {
 }
 ```
 
-## Connect to Cisco CSR Instance
+## Connect to CSR1000v Instance
 
 ```bash
 ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
