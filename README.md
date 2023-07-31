@@ -58,3 +58,6 @@ module "onprem_csr1k" {
 ```bash
 ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
 ```
+
+
+
