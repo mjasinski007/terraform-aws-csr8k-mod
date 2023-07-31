@@ -137,7 +137,7 @@ resource "aws_network_interface" "csr_gig2" {
 
 # Allocate EIP for CSR Gi1
 resource "aws_eip" "this" {
-    domain               = true # used from version 5.x, before it, use  vpc = true
+    domain               = "vpc" # used from version 5.x, before it, use  vpc = true
     network_interface = aws_network_interface.csr_gig1.id
 
     tags = {
