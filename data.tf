@@ -13,9 +13,9 @@ data "aws_ami" "this" {
 
     filter {
         name   = "name"
-        values = var.csr_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_sec_ami]
+        #values = var.csr_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_sec_ami]
         #values = var.prioritize == "price" ? ["cisco_CSR-17.03.06-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3ami-0d8ad992c259060ef"] : ["cisco_CSR-.17.3.3-SEC-dbfcb230-402e-49cc-857f-dacb4db08d34"]
-        #values = ["Cisco-C8K-17.07.01a-42cb6e93-8d9d-490b-a73c-e3e56077ffd1"]
+        values = ["Cisco-C8K-17.08.01a-89aa2e04-79cb-44c1-981d-160b56247c98"]
     }
 }
 
