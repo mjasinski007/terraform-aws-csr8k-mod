@@ -1,7 +1,8 @@
 variable "csr_ami_byol_ami" {
     description = "Cisco Cloud Services Router (CSR) 1000V - BYOL for Maximum Performance"
     type        = string
-    default     = "cisco_CSR-17.03.07-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3"
+    #default     = "cisco_CSR-17.03.07-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3"
+    default     = "Cisco-C8K-17.07.01a-42cb6e93-8d9d-490b-a73c-e3e56077ffd1"
 }
 
 variable "csr_ami_sec_ami" {
