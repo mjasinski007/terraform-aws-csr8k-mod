@@ -112,7 +112,7 @@ resource "aws_eip" "this" {
     tags = {
         "Name" = "OnPremCSR-Gig1-EIP@${var.csr_hostname}"
     }
-    depens_on = [ aws_network_interface.csr_gig1, aws_network_interface.csr_gig2, aws_instance.this ]
+    depends_on = [ aws_network_interface.csr_gig1, aws_network_interface.csr_gig2, aws_instance.this ]
 }
 
 # Create CSR EC2 instance
