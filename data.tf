@@ -7,8 +7,8 @@ data "http" "my_public_ip" {
 
 # CSR AMI
 data "aws_ami" "this" {
-    owners      = ["aws-marketplace"]
-    #owners      = ["679593333241"] # Cisco Systems
+    #owners      = ["aws-marketplace"]
+    owners      = ["679593333241"] # Cisco Systems
     most_recent = true
 
     filter {
