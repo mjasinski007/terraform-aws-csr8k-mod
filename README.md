@@ -61,3 +61,15 @@ ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellm
 
 
 
+# TODO
+
+- Add option create VPC or existing VPC
+  - with subnets name private/public
+- Add options:
+  - Create AWS VPNs ?
+  - Create Aviatrix VPNs?
+- Assign Private IP addresses from root module
+  - Used them to configure interfaces (initial_config)
+- Add option to configure security-groups from root module
+
+
