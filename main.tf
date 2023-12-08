@@ -13,18 +13,18 @@ resource "aws_vpc" "this" {
     )
 }
 
-# resource "aws_subnet" "public_subnet" {
-#     count             = var.create_vpc ? 1 : 0
-#     vpc_id            = aws_vpc.this[0].id
-#     availability_zone = local.az1
-#     cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 1)
+resource "aws_subnet" "public_subnet" {
+    count             = var.create_vpc ? 1 : 0
+    vpc_id            = aws_vpc.this[0].id
+    availability_zone = local.az1
+    cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 1)
 
-#     tags = merge(
-#         {
-#             "Name" = "${var.vpc_name}-${var.public_subnet_suffix}-${local.az1}"
-#         }
-#     )
-# }
+    tags = merge(
+        {
+            "Name" = "${var.vpc_name}-${var.public_subnet_suffix}-${local.az1}"
+        }
+    )
+}
 # resource "aws_subnet" "private_subnet" {
 #     count             = var.create_vpc ? 1 : 0
 #     vpc_id            = aws_vpc.this[0].id

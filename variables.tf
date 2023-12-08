@@ -68,11 +68,11 @@ variable "enable_dns_support" {
 # #     default     = []
 # # }
 
-# variable "public_subnet_suffix" {
-#     description = "Suffix to append to public subnets name"
-#     type        = string
-#     default     = "public"
-# }
+variable "public_subnet_suffix" {
+    description = "Suffix to append to public subnets name"
+    type        = string
+    default     = "public"
+}
 
 # variable "private_subnet_suffix" {
 #     description = "Suffix to append to private subnets name"
@@ -124,17 +124,17 @@ variable "enable_dns_support" {
 #     }
 # }
 
-# variable "public_subnet" {
-#     description = "Public Subnet. Required when use_existing_vpc is true and ha_gw is true"
-#     type        = string
-#     default     = ""
-#     nullable    = false
+variable "public_subnet" {
+    description = "Public Subnet. Required when use_existing_vpc is true and ha_gw is true"
+    type        = string
+    default     = ""
+    nullable    = false
 
-#     validation {
-#         condition     = var.public_subnet == "" || can(cidrnetmask(var.public_subnet))
-#         error_message = "This does not like a valid CIDR."
-#     }
-# }
+    validation {
+        condition     = var.public_subnet == "" || can(cidrnetmask(var.public_subnet))
+        error_message = "This does not like a valid CIDR."
+    }
+}
 
 
 
