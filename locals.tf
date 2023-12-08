@@ -1,6 +1,4 @@
-locals {
-    create_vpc            = var.create_vpc
-    #cidr                  = var.use_existing_vpc ? "10.0.0.0/216" : var.vpc_cidr
+locals {    #cidr                  = var.use_existing_vpc ? "10.0.0.0/216" : var.vpc_cidr
     cidrbits              = tonumber(split("/", var.vpc_cidr)[1])
     newbits               = 26 - local.cidrbits
     netnum                = pow(2, local.newbits)
