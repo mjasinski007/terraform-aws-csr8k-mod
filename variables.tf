@@ -25,26 +25,26 @@ variable "vpc_cidr" {
 }
 
 
-variable "public_subnet_cidr" {
-    description = "First Public Subnet for gig1"
-    type        = string
-}
-
-variable "private_subnet_cidr" {
-    description = "First Private Subnet for gig2"
-    type        = string
-}
-
-
-
-
-
-
-# variable "azs" {
-#     description = "A list of availability zones names or ids in the region"
-#     type        = list(string)
-#     default     = []
+# variable "public_subnet_cidr" {
+#     description = "First Public Subnet for gig1"
+#     type        = string
 # }
+
+# variable "private_subnet_cidr" {
+#     description = "First Private Subnet for gig2"
+#     type        = string
+# }
+
+
+
+
+
+
+# # variable "azs" {
+# #     description = "A list of availability zones names or ids in the region"
+# #     type        = list(string)
+# #     default     = []
+# # }
 
 variable "enable_dns_hostnames" {
     description = "Should be true to enable DNS hostnames in the VPC"
@@ -60,26 +60,26 @@ variable "enable_dns_support" {
 
 
 
-# #### Public Subnets ####
+# # #### Public Subnets ####
 
-# variable "public_subnet_names" {
-#     description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
-#     type        = list(string)
-#     default     = []
+# # variable "public_subnet_names" {
+# #     description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated"
+# #     type        = list(string)
+# #     default     = []
+# # }
+
+# variable "public_subnet_suffix" {
+#     description = "Suffix to append to public subnets name"
+#     type        = string
+#     default     = "public"
 # }
 
-variable "public_subnet_suffix" {
-    description = "Suffix to append to public subnets name"
-    type        = string
-    default     = "public"
-}
+# variable "private_subnet_suffix" {
+#     description = "Suffix to append to private subnets name"
+#     type        = string
+#     default     = "private"
 
-variable "private_subnet_suffix" {
-    description = "Suffix to append to private subnets name"
-    type        = string
-    default     = "private"
-
-}
+# }
 
 # variable "public_subnet_tags" {
 #   description = "Additional tags for the public subnets"

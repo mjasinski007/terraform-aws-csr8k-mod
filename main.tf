@@ -13,43 +13,43 @@ resource "aws_vpc" "this" {
     )
 }
 
-resource "aws_subnet" "public_subnet" {
-    count             = var.create_vpc ? 1 : 0
-    vpc_id            = aws_vpc.this[0].id
-    availability_zone = local.az1
-    cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 1)
+# resource "aws_subnet" "public_subnet" {
+#     count             = var.create_vpc ? 1 : 0
+#     vpc_id            = aws_vpc.this[0].id
+#     availability_zone = local.az1
+#     cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 1)
 
-    tags = merge(
-        {
-            "Name" = "${var.vpc_name}-${var.public_subnet_suffix}-${local.az1}"
-        }
-    )
-}
-resource "aws_subnet" "private_subnet" {
-    count             = var.create_vpc ? 1 : 0
-    vpc_id            = aws_vpc.this[0].id
-    availability_zone = local.az2
-    cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 2)
+#     tags = merge(
+#         {
+#             "Name" = "${var.vpc_name}-${var.public_subnet_suffix}-${local.az1}"
+#         }
+#     )
+# }
+# resource "aws_subnet" "private_subnet" {
+#     count             = var.create_vpc ? 1 : 0
+#     vpc_id            = aws_vpc.this[0].id
+#     availability_zone = local.az2
+#     cidr_block        = cidrsubnet(var.vpc_cidr, local.newbits, local.netnum - 2)
 
-        tags = merge(
-        {
-            "Name" = "${var.vpc_name}-${var.private_subnet_suffix}-${local.az2}"
-        }
-    )
-}
+#         tags = merge(
+#         {
+#             "Name" = "${var.vpc_name}-${var.private_subnet_suffix}-${local.az2}"
+#         }
+#     )
+# }
 
 
-resource "aws_internet_gateway" "this" {
-    count         = var.create_vpc ? 1 : 0
-    #  count = local.create_public_subnets && var.create_igw ? 1 : 0
-    vpc_id        = aws_vpc.this[0].id
+# resource "aws_internet_gateway" "this" {
+#     count         = var.create_vpc ? 1 : 0
+#     #  count = local.create_public_subnets && var.create_igw ? 1 : 0
+#     vpc_id        = aws_vpc.this[0].id
 
-    tags = merge(
-        {
-            "Name" = "${var.vpc_name}-igw"
-        },
-    )
-}
+#     tags = merge(
+#         {
+#             "Name" = "${var.vpc_name}-igw"
+#         },
+#     )
+# }
 
 
 
