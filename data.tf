@@ -1,34 +1,29 @@
-#data "aws_region" "current" {}
-
 data "aws_availability_zones" "aws_azs" {
     state = "available"
 }
-
 
 # Retrieve my public IP address
 data "http" "my_public_ip" {
     url = "http://ipv4.icanhazip.com"
 }
 
-# # CSR AMI
-# data "aws_ami" "this" {
-#     owners      = ["aws-marketplace"]
-#     #owners      = ["679593333241"] # Cisco Systems
-#     most_recent = true
+# # CSR8k AMI
+data "aws_ami" "ami_csr" {
+    owners      = ["aws-marketplace"]
+    #owners      = ["679593333241"] # Cisco Systems
+    most_recent = true
 
-#     filter {
-#         name   = "name"
-#         values = var.csr_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_sec_ami]
-#         #values = var.prioritize == "price" ? ["cisco_CSR-17.03.06-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3ami-0d8ad992c259060ef"] : ["cisco_CSR-.17.3.3-SEC-dbfcb230-402e-49cc-857f-dacb4db08d34"]
-#         #values = ["cisco_CSR-.16.12.06-BYOL-624f5bb1-7f8e-4f7c-ad2c-03ae1cd1c2d3"]
-#     }
-# }
+    filter {
+        name   = "name"
+        values = var.csr8k_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_payg_ami]
+    }
+}
 
-# data "template_file" "running_config" {
-#     template = file("${path.module}/running-config.tpl")
+data "template_file" "initial_config" {
+    template = file("${path.module}/initial_config.tpl")
 
-#     vars = {
-#         admin_password = var.admin_password
-#         hostname       = var.csr_hostname
-#     }
-# }
+    vars = {
+        admin_password = var.admin_password
+        hostname       = var.hostname
+    }
+}

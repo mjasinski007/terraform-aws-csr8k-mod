@@ -1,19 +1,11 @@
-# output "csr_gig1" {
-#     description = "CSR GigabitEthernet1 network insterface as an object with all of it's attributes."
-#     value       = aws_network_interface.csr_gig1
-# }
+output "vpc_id" {
+  value = aws_vpc.this
+}
 
-# output "csr_gig2" {
-#     description = "CSR GigabitEthernet2 network insterface as an object with all of it's attributes."
-#     value       = aws_network_interface.csr_gig2
-# }
+output "public_subnets" {
+  value = aws_subnet.gig1_public_subnet
+}
 
-# output "csr_instance" {
-#     description = "The created CSR instance as an object with all of it's attributes."
-#     value       = aws_instance.this
-# }
-
-# output "csr_public_ip" {
-#     value = aws_eip.this.public_ip
-
-# }
+output "private_subnets" {
+  value = aws_subnet.gig2_private_subnet
+}
