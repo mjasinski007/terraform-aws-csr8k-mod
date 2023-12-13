@@ -1,19 +1,19 @@
 # Objectives
 
 - Deploy [Cisco CSR 8000V](https://aws.amazon.com/marketplace/pp/prodview-cjzny6dzcbrom?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
-  - Cisco 1000v EOL (not supported anymore). More info [here](https://aws.amazon.com/marketplace/pp/prodview-eiyjsmv7u3luy)
+  - Cisco 1000v EOL (not supported anymore). More info [here](https://aws.amazon.com/marketplace/pp/prodview-eiyjsmv7u3luy).
 
 # Examples
 
-- Provision Cisco CSR8k in new VPC
-- Provision Cisco CSR8k in exsiting VPC
-- Provision Cisco CSR8k along with Aviatrix Site-to-Cloud VPN connection (end-to-end automatic implementation) - In Progress
-- Provision Cisco CSR8k along with AWS Transit Gateway VPN connection (end-to-end automatic implementation) - In Progress
+- :heavy_check_mark: Provision Cisco CSR8k in new VPC
+- :x:~~Provision Cisco CSR8k in exsiting VPC~~
+- :black_square_button: Provision Cisco CSR8k along with Aviatrix Site-to-Cloud VPN connection (end-to-end automatic implementation) - In Progress
+- :black_square_button: Provision Cisco CSR8k along with AWS Transit Gateway VPN connection (end-to-end automatic implementation) - In Progress
 
 
 # Cisco CSR8k (New VPC)
 
-- Please navigate to `Examples` > `deploy_csr8k_new_vpc`.
+- Navigate to `Examples` > `deploy_csr8k_new_vpc`.
 - The following example deploys:
   - New VPC
   - New Internet Gateway
@@ -56,108 +56,33 @@
 | gig2_egress_cidr_blocks  | ["0.0.0.0/0]  | List of CIDRs used for Network Security Group for Gig2 interface (egress)  |
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Cisco CSR8k (Existing VPC)
-
-- Please navigate to `Examples` > `deploy_csr8k_existing_vpc`.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- **Terraform Module:** Single CSR 1000v on AWS
-
-
-# Module Usage
-
-- This module creates only one CSR instance.
-
-## Deploy CSR1000v Instance In Existing VPC
-
-- Please refer to `/Examples/Deploy_CSR_In_Existing_VPC` example.
+## Modules Usage
 
 ```hcl
-module "onprem_csr1k" {
-  source  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
-
-  vpc_id         = var.existing_vpc_id
-  gig1_subnet_id = var.gig1_existing_subnet_id
-  gig2_subnet_id = var.gig2_existing_subnet_id
-  key_name       = var.csr_keypair
+module "csr8k_vpc" {
+    source                  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
+    vpc_name                 = var.vpc_name
+    vpc_cidr                 = var.vpc_cidr
+    csr8k_ami                = var.ami_type
+    instance_type            = var.instance_type
+    admin_password           = var.admin_password
+    hostname                 = var.hostname
+    custom_bootstrap         = true # set always as true to use running_config.tpl # Issue 1 in progress
+    bootstrap_data           = data.template_file.running_config.rendered
+    private_ip_list_enabled  = true
+    gig1_private_address     = var.gig1_private_address
+    gig2_private_address     = var.gig2_private_address
+    gig1_subnet_id           = module.csr8k_vpc.public_subnets[0].cidr_block
+    gig2_subnet_id           = module.csr8k_vpc.private_subnets[0].cidr_block
 }
 ```
 
-## Deploy CSR1000v Instance And New VPC
 
-- Please refer to `/Examples/Deploy_CSR_In_New_VPC` example.
+## SSH To Cisco CSR8k Instance
 
-```hcl
-module "csr_vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+- The keypair `CSR8k_KeyPair.pem` will be created under the deployment folder.
+- The output with the SSH command will be genrated after `terraform apply --auto-approve`
 
-  name                 = "OnPremCSR_VPC"
-  cidr                 = "10.0.0.0/16"
-  azs                  = ["ap-southeast-2a"]
-  private_subnets      = ["10.0.1.0/24"]
-  public_subnets       = ["10.0.101.0/24"]
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-
-  tags = {
-    Name = "OnPremCSR_VPC"
-  }
-}
-
-module "onprem_csr1k" {
-  source  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
-
-  vpc_id        = module.csr_vpc.vpc_id
-  gi1_subnet_id = module.csr_vpc.public_subnets[0]
-  gi2_subnet_id = module.csr_vpc.private_subnets[0]
-  key_name      = var.csr_keypair
-}
 ```
-
-## Connect to CSR1000v Instance
-
-```bash
-ssh -i OnPremCSR_KeyPair.pem ec2-user@18.168.60.21 -o kexalgorithms=diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+ssh -i CSR8k_KeyPair.pem admin@18.170.152.96
 ```
-
-
-
-# TODO
-
-- Add option create VPC or existing VPC
-  - with subnets name private/public
-- Add options:
-  - Create AWS VPNs ?
-  - Create Aviatrix VPNs?
-- Assign Private IP addresses from root module
-  - Used them to configure interfaces (initial_config)
-- Add option to configure security-groups from root module
-
-

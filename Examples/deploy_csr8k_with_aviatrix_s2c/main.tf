@@ -14,4 +14,13 @@ module "csr8k_vpc" {
     gig2_private_address     = var.gig2_private_address
     gig1_subnet_id           = module.csr8k_vpc.public_subnets[0].cidr_block
     gig2_subnet_id           = module.csr8k_vpc.private_subnets[0].cidr_block
+    
+    
+    
+        enable_dns_hostnames     = true
+    enable_dns_support       = true
+    gig1_ingress_cidr_blocks = var.gig1_ingress_cidr_blocks
+    gig1_egress_cidr_blocks  = var.gig1_egress_cidr_blocks
+    gig2_ingress_cidr_blocks = var.gig2_ingress_cidr_blocks
+    gig2_egress_cidr_blocks  = var.gig2_egress_cidr_blocks
 }

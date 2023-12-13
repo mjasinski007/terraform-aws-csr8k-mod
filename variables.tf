@@ -4,9 +4,19 @@ variable "create_vpc" {
     default     = true
 }
 
+variable "vpc_id" {
+    description = "VPC ID. Used when create_vpc = false"
+    type        = string
+    default     = null
+}
+
+
+
+
 variable "vpc_name" {
     description = "Name for this VPC"
     type        = string
+    default     = ""
 
     validation {
         condition     = length(var.vpc_name) <= 30
@@ -22,6 +32,7 @@ variable "vpc_name" {
 variable "vpc_cidr" {
     description = "The IPv4 CIDR block for the VPC"
     type        = string
+    default     = ""
 }
 
 variable "enable_dns_hostnames" {
@@ -111,21 +122,26 @@ variable "ssh_allow_ip" {
 variable "gig1_ingress_cidr_blocks" {
     description = "CIDR blocks to be allowed for ingress"
     type        = list(string)
+    default     = ["0.0.0.0/0"]
 }
+
 
 variable "gig1_egress_cidr_blocks" {
     description = "CIDR blocks to be allowed for egress"
     type        = list(string)
+    default     = ["0.0.0.0/0"]
 }
 
 variable "gig2_ingress_cidr_blocks" {
     description = "CIDR blocks to be allowed for ingress"
     type        = list(string)
+    default     = ["0.0.0.0/0"]
 }
 
 variable "gig2_egress_cidr_blocks" {
     description = "CIDR blocks to be allowed for egress"
     type        = list(string)
+    default     = ["0.0.0.0/0"]
 }
 
 variable "private_ip_list_enabled" {

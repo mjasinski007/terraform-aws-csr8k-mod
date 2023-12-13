@@ -9,3 +9,8 @@ output "public_subnets" {
 output "private_subnets" {
   value = aws_subnet.gig2_private_subnet
 }
+
+
+output "gig1_eip" {
+  value = aws_eip.eip
+}
