@@ -1,6 +1,5 @@
 module "csr8k_vpc" {
-    source                   = "/Users/vmario/Desktop/vDEVNET_Projects/02.WORK/01.AVIATRIX/01.AVIATRIX_GITHUB/01.Modules/terraform-aws-onprem-csr"
-    #source                  = "github.com/mjasinski007/terraform-aws-onprem-csr.git"
+    source                  = "github.com/mjasinski007/terraform-aws-csr8k-mod.git"
     vpc_name                 = var.vpc_name
     vpc_cidr                 = var.vpc_cidr
     csr8k_ami                = var.ami_type

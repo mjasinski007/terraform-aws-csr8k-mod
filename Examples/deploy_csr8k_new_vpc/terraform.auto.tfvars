@@ -11,7 +11,7 @@ hostname                 = "OnpremCSR8k"
 gig1_private_address     = ["10.0.255.10"]
 gig2_private_address     = ["10.0.255.70"]
 
-# gig1_ingress_cidr_blocks = ["0.0.0.0/0"]
-# gig1_egress_cidr_blocks  = ["0.0.0.0/0"]
-# gig2_ingress_cidr_blocks = ["0.0.0.0/0"]
-# gig2_egress_cidr_blocks  = ["0.0.0.0/0"]
+gig1_ingress_cidr_blocks = ["0.0.0.0/0"]
+gig1_egress_cidr_blocks  = ["0.0.0.0/0"]
+gig2_ingress_cidr_blocks = ["0.0.0.0/0"]
+gig2_egress_cidr_blocks  = ["0.0.0.0/0"]
