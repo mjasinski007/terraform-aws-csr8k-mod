@@ -9,13 +9,14 @@ data "http" "my_public_ip" {
 
 # # CSR8k AMI
 data "aws_ami" "ami_csr" {
-    owners      = ["aws-marketplace"]
-    #owners      = ["679593333241"] # Cisco Systems
+    #owners      = ["aws-marketplace"]
+    owners      = ["679593333241"] # Cisco Systems
     most_recent = true
 
     filter {
         name   = "name"
         values = var.csr8k_ami == "BYOL" ? [var.csr_ami_byol_ami] : [var.csr_ami_payg_ami]
+        #values = ["Cisco-C8K-*"]
     }
 }
 

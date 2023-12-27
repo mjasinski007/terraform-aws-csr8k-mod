@@ -10,9 +10,6 @@ variable "vpc_id" {
     default     = null
 }
 
-
-
-
 variable "vpc_name" {
     description = "Name for this VPC"
     type        = string
@@ -62,7 +59,7 @@ variable "private_subnet_suffix" {
 variable "csr_ami_byol_ami" {
     description = "Cisco Cloud Services Router (CSR) 8000V - BYOL"
     type        = string
-    default     = "Cisco-C8K-17.06.02-3294efff-833b-4aa6-8220-a81f42421ad0"
+    default     = "Cisco-C8K-17.13.01a-42cb6e93-8d9d-490b-a73c-e3e56077ffd1"
 }
 
 # Subscribe: https://aws.amazon.com/marketplace/pp?sku=k585h9fyh5prlazwh3vb0yh3
@@ -159,7 +156,6 @@ variable "gig2_private_address" {
     default = []
 }
 
-
 variable "tags" {
     description = "Map of tags to assign to the gateway."
     type        = map(string)
@@ -177,3 +173,11 @@ variable "create_igw" {
     type        = bool
     default     = true
 }
+
+variable "provision_aviatrix_s2c" {
+    type    = bool
+    default = false
+}
+
+
+
